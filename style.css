@@ -236,24 +236,25 @@ footer {
 
 /* === NAVBAR === */
 .navbar {
+  position: relative;
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  justify-content: center;
   background: #0e94e1;
   padding: 15px 60px;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
 }
 
-.nav-left h2 {
-  color: #1f66c3;
-  font-weight: 700;
-  font-size: 1.4rem;
+/* Back Button - fixed to left */
+.nav-left {
+  position: absolute;
+  left: 20px;
 }
 
 .back-btn {
   background: #ffffff;
- color: #1f66c3;
-  padding: 10px 20px;
+  color: #1f66c3;
+  padding: 8px 18px;
   border-radius: 8px;
   text-decoration: none;
   font-weight: 500;
@@ -263,6 +264,57 @@ footer {
 .back-btn:hover {
   background: #e5e5e5;
   color: #144b8e;
+}
+
+/* Back button */
+.back-btn {
+  background: #ffffff;
+  color: #1f66c3;
+  padding: 10px 20px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  border: none;
+}
+
+.back-btn:hover {
+  background: #e5e5e5;
+  color: #144b8e;
+}
+.nav-logo h1 {
+  color: #ffffff;
+  font-size: 1.4rem;
+  font-weight: 600;
+  margin: 0;
+  text-align: center;
+}
+
+/* --- Tablet --- */
+@media (max-width: 992px) {
+  .navbar {
+    padding: 12px 30px;
+  }
+}
+
+/* --- Mobile --- */
+@media (max-width: 600px) {
+  .navbar {
+    padding: 12px 15px;
+  }
+
+  .nav-left {
+    left: 10px;
+  }
+
+  .nav-logo h1 {
+    font-size: 1.2rem;
+  }
+
+  .back-btn {
+    padding: 6px 14px;
+    font-size: 0.9rem;
+  }
 }
 
 /* === CHAPTER SECTION === */
@@ -365,4 +417,98 @@ body {
 
 footer {
   margin-top: 0; /* removes unnecessary gap */
+}
+/* === RESPONSIVE DESIGN === */
+
+/* For tablets and small laptops */
+@media (max-width: 992px) {
+  .navbar {
+    padding: 15px 30px;
+  }
+
+  .chapter-header h1 {
+    font-size: 1.8rem;
+  }
+
+  .chapter-header h3 {
+    font-size: 1rem;
+  }
+
+  .chapter-card {
+    padding: 30px 15px;
+  }
+}
+
+/* For mobile devices */
+@media (max-width: 600px) {
+  /* Navbar adjustments */
+  .navbar {
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 10px 15px;
+    gap: 15px;
+  }
+
+  .nav-left {
+    order: 1;
+  }
+
+  .nav-logo {
+    order: 2;
+  }
+
+  .nav-logo h1 {
+    font-size: 1.1rem;
+    color: #ffffff;
+  }
+
+  .back-btn {
+    padding: 6px 12px;
+    font-size: 0.9rem;
+  }
+  /* Chapter section */
+  .chapter-section {
+    padding: 40px 10px;
+    justify-content: flex-start;
+  }
+
+  .chapter-header h1 {
+    font-size: 1.5rem;
+  }
+
+  .chapter-header h3 {
+    font-size: 0.9rem;
+    margin-bottom: 25px;
+  }
+
+  /* Cards layout */
+  .chapter-cards {
+    grid-template-columns: 1fr;
+    gap: 20px;
+    width: 100%;
+    max-width: 400px;
+  }
+
+  .chapter-card {
+    padding: 25px 15px;
+  }
+
+  .chapter-card .icon {
+    width: 60px;
+    height: 60px;
+  }
+
+  .chapter-card h2 {
+    font-size: 1.1rem;
+  }
+
+  .chapter-card p {
+    font-size: 0.9rem;
+  }
+
+  footer {
+    font-size: 0.8rem;
+    padding: 10px 0;
+  }
 }

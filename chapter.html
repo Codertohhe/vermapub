@@ -21,15 +21,15 @@
     <!-- MAIN SECTION -->
     <section class="chapter-section">
       <div class="chapter-header">
-        <h1 id="chapterTitle"></h1>
-        <h3 id="bookDetails"></h3>
+        <h1 id="bookDetails"></h1>
+        <h3 id="chapterTitle"></h3>
       </div>
 
       <div class="chapter-cards">
         <a id="youtubeBtn" target="_blank" class="chapter-card">
           <div class="icon youtube">
             <img
-              src="https://cdn-icons-png.flaticon.com/512/1384/1384060.png"
+              src="./youtube.png"
               alt="YouTube"
             />
           </div>
@@ -40,7 +40,7 @@
         <a id="activitiesBtn" target="_blank" class="chapter-card">
           <div class="icon activities">
             <img
-              src="https://cdn-icons-png.flaticon.com/512/599/599502.png"
+              src="./interactive.png"
               alt="Activities"
             />
           </div>
@@ -62,7 +62,7 @@
     </section>
 
     <footer>
-      <p>© 2025 Devsiddh Publications. All rights reserved.</p>
+      <p>© 2025 Verma Publication. All rights reserved.</p>
     </footer>
 
     <script>
@@ -76,9 +76,9 @@
           "<h2>Publication data not found!</h2>";
       } else {
         // Set navbar title and back button
-        document.getElementById(
-          "navTitle"
-        ).textContent = `${pubName} Publication`;
+        document.getElementById("navTitle").textContent =
+          pubData.displayName || pubName;
+
         document.getElementById(
           "backBtn"
         ).href = `publication.html?pub=${encodeURIComponent(pubName)}`;
@@ -95,9 +95,9 @@
           ).textContent = `Chapter ${chapter.number}: ${chapter.name}`;
           document.getElementById(
             "bookDetails"
-          ).textContent = `${pubData.bookName} | Class ${pubData.classNo} | ${pubName} Publication`;
+          ).textContent = `${pubData.bookName}  Class ${pubData.classNo}`;
 
-          document.getElementById("youtubeBtn").href = pubData.youtube;
+          document.getElementById("youtubeBtn").href = chapter.youtube;
           document.getElementById("activitiesBtn").href = chapter.activities;
           document.getElementById("translatorBtn").href = chapter.translator;
         }

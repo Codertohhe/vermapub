@@ -29,7 +29,7 @@
     </section>
 
     <footer>
-      <p>© 2025 Devsiddh Publications. All rights reserved.</p>
+      <p>© 2025 Verma Publication. All rights reserved.</p>
     </footer>
 
     <script>
@@ -43,9 +43,8 @@
         ).innerHTML = `<h2>Publication data not found!</h2>`;
       } else {
         // Set publication name in navbar
-        document.getElementById(
-          "navTitle"
-        ).textContent = `${pubName} Publication`;
+       document.getElementById("navTitle").textContent = pubData.displayName || pubName;
+
 
         // Book details
         document.getElementById(
