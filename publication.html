@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Publication Details</title>
+    <link rel="stylesheet" href="style.css" />
+    <script src="data.js"></script>
+  </head>
+  <body>
+    <!-- NAVBAR -->
+    <nav class="navbar">
+      <div class="nav-left">
+        <a href="index.html" class="back-btn">← Back</a>
+      </div>
+      <div class="nav-logo">
+        <h1 id="navTitle">Publication Details</h1>
+      </div>
+    </nav>
+
+    <!-- MAIN SECTION -->
+    <section class="pub-details-section">
+      <div class="pub-container">
+        <h3 id="bookInfo"></h3>
+
+        <h2>Chapters</h2>
+        <ul id="chapterList"></ul>
+      </div>
+    </section>
+
+    <footer>
+      <p>© 2025 Devsiddh Publications. All rights reserved.</p>
+    </footer>
+
+    <script>
+      const params = new URLSearchParams(window.location.search);
+      const pubName = params.get("pub");
+      const pubData = publicationsData[pubName];
+
+      if (!pubData) {
+        document.querySelector(
+          ".pub-container"
+        ).innerHTML = `<h2>Publication data not found!</h2>`;
+      } else {
+        // Set publication name in navbar
+        document.getElementById(
+          "navTitle"
+        ).textContent = `${pubName} Publication`;
+
+        // Book details
+        document.getElementById(
+          "bookInfo"
+        ).textContent = `${pubData.bookName} – Class ${pubData.classNo}`;
+
+        // Chapters list
+        const list = document.getElementById("chapterList");
+        pubData.chapters.forEach((ch) => {
+          const li = document.createElement("li");
+          li.innerHTML = `
+            <button class="chapter-btn" onclick="openChapter('${pubName}', ${ch.number})">
+              Chapter ${ch.number}: ${ch.name}
+            </button>`;
+          list.appendChild(li);
+        });
+      }
+
+      function openChapter(pub, chapNum) {
+        window.location.href = `chapter.html?pub=${encodeURIComponent(
+          pub
+        )}&chap=${chapNum}`;
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Chapter Details</title>
+    <link rel="stylesheet" href="style.css" />
+    <script src="data.js"></script>
+  </head>
+  <body>
+    <!-- NAVBAR -->
+    <nav class="navbar">
+      <div class="nav-left">
+        <a id="backBtn" class="back-btn">← Back</a>
+      </div>
+      <div class="nav-logo">
+        <h1 id="navTitle">Chapter Details</h1>
+      </div>
+    </nav>
+
+    <!-- MAIN SECTION -->
+    <section class="chapter-section">
+      <div class="chapter-header">
+        <h1 id="chapterTitle"></h1>
+        <h3 id="bookDetails"></h3>
+      </div>
+
+      <div class="chapter-cards">
+        <a id="youtubeBtn" target="_blank" class="chapter-card">
+          <div class="icon youtube">
+            <img
+              src="https://cdn-icons-png.flaticon.com/512/1384/1384060.png"
+              alt="YouTube"
+            />
+          </div>
+          <h2>Watch on YouTube</h2>
+          <p>View our chapter video lessons</p>
+        </a>
+
+        <a id="activitiesBtn" target="_blank" class="chapter-card">
+          <div class="icon activities">
+            <img
+              src="https://cdn-icons-png.flaticon.com/512/599/599502.png"
+              alt="Activities"
+            />
+          </div>
+          <h2>Interactivities</h2>
+          <p>Access interactive learning materials</p>
+        </a>
+
+        <a id="translatorBtn" target="_blank" class="chapter-card">
+          <div class="icon translator">
+            <img
+              src="https://cdn-icons-png.flaticon.com/512/2991/2991108.png"
+              alt="Translator"
+            />
+          </div>
+          <h2>Translator PDFs</h2>
+          <p>Download translator guides</p>
+        </a>
+      </div>
+    </section>
+
+    <footer>
+      <p>© 2025 Devsiddh Publications. All rights reserved.</p>
+    </footer>
+
+    <script>
+      const params = new URLSearchParams(window.location.search);
+      const pubName = params.get("pub");
+      const chapNum = parseInt(params.get("chap"));
+      const pubData = publicationsData[pubName];
+
+      if (!pubData) {
+        document.querySelector(".chapter-section").innerHTML =
+          "<h2>Publication data not found!</h2>";
+      } else {
+        // Set navbar title and back button
+        document.getElementById(
+          "navTitle"
+        ).textContent = `${pubName} Publication`;
+        document.getElementById(
+          "backBtn"
+        ).href = `publication.html?pub=${encodeURIComponent(pubName)}`;
+
+        // Find and display chapter details
+        const chapter = pubData.chapters.find((c) => c.number === chapNum);
+
+        if (!chapter) {
+          document.querySelector(".chapter-section").innerHTML =
+            "<h2>Chapter not found!</h2>";
+        } else {
+          document.getElementById(
+            "chapterTitle"
+          ).textContent = `Chapter ${chapter.number}: ${chapter.name}`;
+          document.getElementById(
+            "bookDetails"
+          ).textContent = `${pubData.bookName} | Class ${pubData.classNo} | ${pubName} Publication`;
+
+          document.getElementById("youtubeBtn").href = pubData.youtube;
+          document.getElementById("activitiesBtn").href = chapter.activities;
+          document.getElementById("translatorBtn").href = chapter.translator;
+        }
+      }
+    </script>
+  </body>
+</html>
